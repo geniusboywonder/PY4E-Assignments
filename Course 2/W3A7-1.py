@@ -5,4 +5,4 @@ except:
     print("File cannot be found: ", fname)
     quit()
 for line in fh:
-    print(strip(line.upper())
+    print(line.strip().upper())
