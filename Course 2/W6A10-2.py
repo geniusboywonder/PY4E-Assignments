@@ -8,27 +8,29 @@ except:
     quit()
 
 counts = dict()
+countsort = list()
 lst = list()
 
+# read each line of the file
 for line in fh:
     if len(line) < 3 or not line.startswith("From ") : continue
+    # split each line into words
     words = line.rstrip().split()
-    time = words[6]
+    # find the "time" word
+    time = words[5]
+    # strip out the hour
     hour = time[:2]
-    print(words)
-    counts[words[6].]
+    # count the number of occurances of each hour
+    counts[hour] = counts.get(hour,0) + 1
 
-#
-#     for word in words:
-#         if "@" not in word : continue
-#         counts[word] = counts.get(word,0) + 1
-#
-# sendercount = None
-# sender = None
-#
-# for k,v in counts.items() :
-#     if sendercount is None or v > sendercount :
-#         sender = k
-#         sendercount = v
-#
-# print(sender, sendercount)
+# put the dictionary into a list so it can be sorted
+for v,k in counts.items() :
+    lst = (str(v), k)
+    countsort.append(lst)
+
+#sort the list
+countsort = sorted(countsort)
+
+# print each tuple on a new line
+for v,k in countsort :
+    print(v,k)
